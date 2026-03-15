@@ -118,16 +118,17 @@ export class RecurrenceRule {
   dayOfWeek: RecurrenceSegment = null;
   tz: string | null = null;
 
-  constructor(yearOrSpec?: number | null | Record<string, RecurrenceSegment | string | null>, month?: RecurrenceSegment, date?: RecurrenceSegment, hour?: RecurrenceSegment, minute?: RecurrenceSegment, second?: RecurrenceSegment, dayOfWeek?: RecurrenceSegment) {
+  constructor(yearOrSpec?: number | null | Partial<{ second: RecurrenceSegment; minute: RecurrenceSegment; hour: RecurrenceSegment; date: RecurrenceSegment; month: RecurrenceSegment; year: RecurrenceSegment; dayOfWeek: RecurrenceSegment; tz: string | null }>, month?: RecurrenceSegment, date?: RecurrenceSegment, hour?: RecurrenceSegment, minute?: RecurrenceSegment, second?: RecurrenceSegment, dayOfWeek?: RecurrenceSegment) {
     if (yearOrSpec !== null && yearOrSpec !== undefined && typeof yearOrSpec === 'object') {
-      if ('second' in yearOrSpec) this.second = yearOrSpec.second as RecurrenceSegment;
-      if ('minute' in yearOrSpec) this.minute = yearOrSpec.minute as RecurrenceSegment;
-      if ('hour' in yearOrSpec) this.hour = yearOrSpec.hour as RecurrenceSegment;
-      if ('date' in yearOrSpec) this.date = yearOrSpec.date as RecurrenceSegment;
-      if ('month' in yearOrSpec) this.month = yearOrSpec.month as RecurrenceSegment;
-      if ('year' in yearOrSpec) this.year = yearOrSpec.year as RecurrenceSegment;
-      if ('dayOfWeek' in yearOrSpec) this.dayOfWeek = yearOrSpec.dayOfWeek as RecurrenceSegment;
-      if ('tz' in yearOrSpec) this.tz = yearOrSpec.tz as string | null;
+      const spec = yearOrSpec;
+      if ('second' in spec) this.second = spec.second ?? null;
+      if ('minute' in spec) this.minute = spec.minute ?? null;
+      if ('hour' in spec) this.hour = spec.hour ?? null;
+      if ('date' in spec) this.date = spec.date ?? null;
+      if ('month' in spec) this.month = spec.month ?? null;
+      if ('year' in spec) this.year = spec.year ?? null;
+      if ('dayOfWeek' in spec) this.dayOfWeek = spec.dayOfWeek ?? null;
+      if ('tz' in spec) this.tz = spec.tz ?? null;
     } else {
       this.year = yearOrSpec ?? null;
       this.month = month ?? null;
