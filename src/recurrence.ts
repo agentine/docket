@@ -58,7 +58,7 @@ function dateInTimezone(date: Date, tz: string): { year: number; month: number; 
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    hour12: false,
+    hourCycle: 'h23',
   });
   const parts = fmt.formatToParts(date);
   const get = (type: string): number => {

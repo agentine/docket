@@ -160,7 +160,7 @@ describe('RecurrenceRule', () => {
         timeZone: 'America/New_York',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false,
+        hourCycle: 'h23',
       });
       const parts = fmt.formatToParts(next!);
       const hour = parseInt(parts.find(p => p.type === 'hour')!.value, 10);

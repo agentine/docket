@@ -379,7 +379,7 @@ describe('node-schedule API contract tests', () => {
         timeZone: 'America/New_York',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false,
+        hourCycle: 'h23',
       });
       const parts = fmt.formatToParts(next!);
       const hour = parseInt(parts.find(p => p.type === 'hour')!.value, 10);
@@ -401,7 +401,7 @@ describe('node-schedule API contract tests', () => {
         timeZone: 'UTC',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false,
+        hourCycle: 'h23',
       });
       const parts = fmt.formatToParts(next!);
       const hour = parseInt(parts.find(p => p.type === 'hour')!.value, 10);
